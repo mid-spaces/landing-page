@@ -1,7 +1,7 @@
 // assets/js/scripts.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Carousel functionality (as above)
+    // Carousel functionality
     const carousel = document.querySelector('.carousel');
     const carouselItems = document.querySelectorAll('.carousel-item');
     const prevButton = document.querySelector('.carousel-controls .prev');
