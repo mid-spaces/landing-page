@@ -1,0 +1,188 @@
+/* assets/css/styles.css */
+
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Typography */
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+/* Header */
+header {
+    background: #f4f4f4;
+    padding: 20px 0;
+}
+
+header .logo {
+    float: left;
+    width: 150px;
+}
+
+header nav {
+    float: right;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+header::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Hero Section */
+.hero {
+    background: url('../images/hero.jpg') no-repeat center center/cover;
+    height: 60vh;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.buttons .btn {
+    padding: 10px 20px;
+    background: #ff7f50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 0 10px;
+    transition: background 0.3s ease;
+}
+
+.buttons .btn:hover {
+    background: #ff5722;
+}
+
+/* Sections */
+section {
+    padding: 60px 0;
+}
+
+section.about, section.paper, section.organization, section.dataset-section, section.contact-section {
+    background: #fff;
+}
+
+section.about h2, section.paper-section h2, section.dataset-section h2, section.organization h2, section.contact-section h2 {
+    margin-bottom: 20px;
+    color: #ff7f50;
+}
+
+section.about p, section.paper-section p, section.dataset-section p, section.organization p, section.contact-section p {
+    margin-bottom: 15px;
+}
+
+.btn {
+    padding: 10px 20px;
+    background: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: #555;
+}
+
+/* Footer */
+footer {
+    background: #f4f4f4;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer .social-links a {
+    color: #333;
+    margin: 0 10px;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+}
+
+footer .social-links a:hover {
+    color: #ff7f50;
+}
+
+footer p {
+    margin-top: 10px;
+    font-size: 0.9em;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    width: 150px;
+    align-self: flex-start;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header .logo, header nav {
+        float: none;
+        text-align: center;
+    }
+
+    header nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+}
