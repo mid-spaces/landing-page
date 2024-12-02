@@ -21,4 +21,4 @@ This repository contains a template for creating a landing page for datasets and
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/mid-spaces/mid-space-landing-page.git
+   git clone https://github.com/mid-spaces/landing-page.git
