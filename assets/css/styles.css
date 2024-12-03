@@ -60,7 +60,7 @@ header .container {
 }
 
 .logo-container .mila-logo {
-    max-height: 70px; /* Increased from 60px */
+    max-height: 50px; /* Increased from 60px */
     width: auto;
     height: auto;
 }
@@ -224,7 +224,7 @@ header nav ul li a.active {
 }
 
 .summary h2 {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     color: #ff7f50;
     font-size: 2.2em;
     text-align: left; /* Ensure left alignment */
@@ -361,7 +361,7 @@ footer a:hover {
 
 .paper-content h3 {
     font-size: 1.4em;
-    margin-top: 20px;
+    margin-top: 15px;
     color: #555;
 }
 
