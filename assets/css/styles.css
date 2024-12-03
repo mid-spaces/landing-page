@@ -228,7 +228,7 @@ header nav ul li a.active {
     margin-bottom: 15px; /* Adjusted margin for better spacing */
     color: #ff7f50;
     font-size: 2.2em;
-    text-align: left; /* Ensure left alignment */
+    text-align: center; /* Ensure left alignment */
 }
 
 .summary p {
