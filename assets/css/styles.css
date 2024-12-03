@@ -37,7 +37,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 5px 0; /* Reduced padding to decrease header height */
+    padding: 15px 0; /* Reduced padding to decrease header height */
 }
 
 header .container {
@@ -53,14 +53,14 @@ header .container {
 }
 
 .logo-container .logo {
-    max-height: 80px; /* Increased from 50px */
+    max-height: 150px; /* Increased from 50px */
     width: auto;
     height: auto;
     margin-right: 15px; /* Slightly increased spacing */
 }
 
 .logo-container .mila-logo {
-    max-height: 130px; /* Increased from 60px */
+    max-height: 200px; /* Increased from 60px */
     width: auto;
     height: auto;
 }
@@ -226,7 +226,7 @@ header nav ul li a.active {
 .summary-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Shifted to the right */
+    align-items: left; /* Shifted to the right */
 }
 
 .summary-content h2 {
