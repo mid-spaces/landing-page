@@ -51,12 +51,12 @@ header .container {
 }
 
 .logo-container .logo {
-    width: 80px; /* Default size for UNESCO */
+    width: 70px; /* Default size for UNESCO */
     margin-right: 15px; /* Spacing between logos */
 }
 
 .logo-container .mila-logo {
-    width: 100px; /* Increased size for Mila */
+    width: 200px; /* Increased size for Mila */
 }
 
 /* Navigation */
