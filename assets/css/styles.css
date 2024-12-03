@@ -53,14 +53,14 @@ header .container {
 }
 
 .logo-container .logo {
-    max-height: 60px; /* Increased from 50px */
+    max-height: 90px; /* Increased from 50px */
     width: auto;
     height: auto;
     margin-right: 15px; /* Slightly increased spacing */
 }
 
 .logo-container .mila-logo {
-    max-height: 50px; /* Reduced from 70px */
+    max-height: 40px; /* Reduced from 70px */
     width: auto;
     height: auto;
 }
