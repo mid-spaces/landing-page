@@ -26,7 +26,7 @@ body {
     max-width: 1200px;
     margin: auto;
     overflow: hidden;
-    padding: 20px 0;
+    padding: 15px 0;
 }
 
 /* Header */
@@ -53,14 +53,14 @@ header .container {
 }
 
 .logo-container .logo {
-    max-height: 150px; /* Increased from 50px */
+    max-height: 120px; /* Increased from 50px */
     width: auto;
     height: auto;
     margin-right: 15px; /* Slightly increased spacing */
 }
 
 .logo-container .mila-logo {
-    max-height: 200px; /* Increased from 60px */
+    max-height: 150px; /* Increased from 60px */
     width: auto;
     height: auto;
 }
@@ -221,6 +221,7 @@ header nav ul li a.active {
     background: #fff;
     padding: 60px 0;
     text-align: left;
+    padding: 60px 0;
 }
 
 .summary h2 {
@@ -228,6 +229,7 @@ header nav ul li a.active {
     color: #ff7f50;
     font-size: 2em;
     text-align: center; /* Center the title */
+    padding: 60px 0;
 }
 
 .summary p {
@@ -237,6 +239,7 @@ header nav ul li a.active {
     color: #555;
     font-size: 1.2em; /* Match font size of summaries */
     line-height: 1.6;
+    padding: 60px 0;
 }
 
 
