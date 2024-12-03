@@ -60,7 +60,7 @@ header .container {
 }
 
 .logo-container .mila-logo {
-    max-height: 50px; /* Increased from 60px */
+    max-height: 40px; /* Increased from 60px */
     width: auto;
     height: auto;
 }
