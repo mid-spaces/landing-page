@@ -37,7 +37,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 15px 0; /* Reduced padding to decrease header height */
+    padding: 5px 0; /* Reduced padding to decrease header height */
 }
 
 header .container {
@@ -223,25 +223,22 @@ header nav ul li a.active {
     text-align: left;
 }
 
-.summary-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Shifted to the right */
-}
-
-.summary-content h2 {
+.summary h2 {
     margin-bottom: 20px;
     color: #ff7f50;
     font-size: 2em;
+    text-align: center; /* Center the title */
 }
 
-.summary-content p {
+.summary p {
     max-width: 800px;
+    margin: 0 auto; /* Center the paragraph */
     text-align: left;
     color: #555;
-    font-size: 1.4em; /* Match font size of summaries */
+    font-size: 1.2em; /* Match font size of summaries */
     line-height: 1.6;
 }
+
 
 /* Visualizations Section */
 .visualizations {
