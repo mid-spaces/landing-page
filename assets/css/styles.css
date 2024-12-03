@@ -51,10 +51,15 @@ header .container {
 }
 
 .logo-container .logo {
-    width: 80px; /* Reduced size */
-    margin-right: 15px; /* Added spacing */
+    width: 80px; /* Default size for UNESCO */
+    margin-right: 15px; /* Spacing between logos */
 }
 
+.logo-container .mila-logo {
+    width: 100px; /* Increased size for Mila */
+}
+
+/* Navigation */
 header nav ul {
     list-style: none;
     display: flex;
@@ -76,6 +81,40 @@ header nav ul li a.active {
     color: #ff7f50;
 }
 
+/* Toggle Button */
+.toggle-button {
+    display: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    header nav ul {
+        flex-direction: column;
+        background: #fff;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 200px;
+        display: none;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    header nav ul.active {
+        display: flex;
+    }
+
+    header nav ul li {
+        margin: 15px 0;
+        text-align: center;
+    }
+
+    .toggle-button {
+        display: block;
+    }
+}
+
 /* Hero Section */
 .hero {
     background: #ffffff;
@@ -85,7 +124,7 @@ header nav ul li a.active {
 
 .hero-content {
     display: flex;
-    align-items: flex-start; /* Aligned to the left */
+    align-items: flex-start; /* Align to the left */
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -187,7 +226,8 @@ header nav ul li a.active {
     margin: 0 auto 20px auto;
     text-align: left;
     color: #555;
-    font-size: 1.1em;
+    font-size: 1.2em; /* Increased text size */
+    line-height: 1.6;
 }
 
 /* Visualizations Section */
@@ -298,6 +338,8 @@ footer a:hover {
     max-width: 800px;
     margin: 40px auto;
     text-align: left;
+    font-size: 1.1em; /* Increased body text size */
+    line-height: 1.8;
 }
 
 .paper-content h2 {
@@ -319,8 +361,8 @@ footer a:hover {
 }
 
 .paper-content p {
-    font-size: 1em;
-    line-height: 1.6;
+    font-size: 1.1em;
+    line-height: 1.8;
     color: #555;
     margin-bottom: 15px;
 }
@@ -334,9 +376,9 @@ footer a:hover {
     margin-bottom: 10px;
 }
 
-/* Footer Adjustments for Index Page */
+/* Hide Social Links in Footer on Index Page */
 footer .social-links {
-    display: none; /* Hide social links on index page */
+    display: none;
 }
 
 /* Responsive */
@@ -351,6 +393,10 @@ footer .social-links {
 
     .carousel-controls button {
         padding: 8px 12px;
+    }
+
+    .summary p {
+        font-size: 1.1em; /* Adjust font size for smaller screens */
     }
 
     .paper-content {
@@ -412,12 +458,4 @@ footer .social-links {
     .paper-content h4 {
         font-size: 1em;
     }
-}
-
-/* Toggle Button */
-.toggle-button {
-    display: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #333;
 }
