@@ -227,7 +227,7 @@ header nav ul li a.active {
     margin-bottom: 5px;
     color: #ff7f50;
     font-size: 2.2em;
-    text-align: left; /* Ensure left alignment */
+    text-align: center; /* Ensure left alignment */
 }
 
 .summary p {
