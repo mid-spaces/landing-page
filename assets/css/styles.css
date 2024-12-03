@@ -26,7 +26,7 @@ body {
     max-width: 1200px;
     margin: auto;
     overflow: hidden;
-    padding: 15px 0;
+    padding: 20px 0;
 }
 
 /* Header */
@@ -53,14 +53,14 @@ header .container {
 }
 
 .logo-container .logo {
-    max-height: 120px; /* Increased from 50px */
+    max-height: 60px; /* Increased from 50px */
     width: auto;
     height: auto;
     margin-right: 15px; /* Slightly increased spacing */
 }
 
 .logo-container .mila-logo {
-    max-height: 150px; /* Increased from 60px */
+    max-height: 70px; /* Increased from 60px */
     width: auto;
     height: auto;
 }
@@ -221,27 +221,26 @@ header nav ul li a.active {
     background: #fff;
     padding: 60px 0;
     text-align: left;
-    padding: 60px 0;
 }
 
-.summary h2 {
+.summary-content {
+    /* Removed Flexbox properties to prevent shifting to the right */
+    /* Use standard block layout */
+    max-width: 800px;
+    margin: 0 auto; /* Center the summary section */
+}
+
+.summary-content h2 {
     margin-bottom: 20px;
     color: #ff7f50;
     font-size: 2em;
-    text-align: center; /* Center the title */
-    padding: 60px 0;
 }
 
-.summary p {
-    max-width: 800px;
-    margin: 0 auto; /* Center the paragraph */
-    text-align: left;
+.summary-content p {
     color: #555;
     font-size: 1.2em; /* Match font size of summaries */
     line-height: 1.6;
-    padding: 60px 0;
 }
-
 
 /* Visualizations Section */
 .visualizations {
@@ -280,11 +279,11 @@ header nav ul li a.active {
 .description h3 {
     color: #ff7f50;
     margin-bottom: 10px;
-    font-size: 1.4em; /* Match font size of summaries */
+    font-size: 1.2em; /* Match font size of summaries */
 }
 
 .description p {
-    font-size: 1.4em; /* Match font size of summaries */
+    font-size: 1.2em; /* Match font size of summaries */
     color: #555;
     margin-bottom: 10px;
 }
@@ -407,11 +406,13 @@ footer .social-links {
     }
 
     .summary-content {
-        align-items: center; /* Center align on smaller screens */
+        /* Center align the summary on smaller screens */
+        max-width: 100%;
+        padding: 0 20px;
     }
 
     .summary-content p {
-        text-align: center;
+        text-align: left;
     }
 
     .summary p {
@@ -471,7 +472,7 @@ footer .social-links {
     }
 
     .description h3 {
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
 
     .description p {
@@ -483,7 +484,7 @@ footer .social-links {
     }
 
     .paper-content h3 {
-        font-size: 1.4em;
+        font-size: 1.2em;
     }
 
     .paper-content h4 {
@@ -509,25 +510,4 @@ footer .social-links {
 /* Adjust navigation link font sizes for better visibility */
 header nav ul li a {
     font-size: 1.2em; /* Increased font size */
-}
-
-/* Align the summary section to the right */
-.summary-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end; /* Shift content to the right */
-}
-
-.summary-content h2 {
-    margin-bottom: 20px;
-    color: #ff7f50;
-    font-size: 2em;
-}
-
-.summary-content p {
-    max-width: 800px;
-    text-align: left;
-    color: #555;
-    font-size: 1.2em; /* Match font size of summaries */
-    line-height: 1.6;
 }
