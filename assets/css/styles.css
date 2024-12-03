@@ -51,12 +51,14 @@ header .container {
 }
 
 .logo-container .logo {
-    width: 70px; /* Default size for UNESCO */
-    margin-right: 15px; /* Spacing between logos */
+    width: 70px; /
+    height: auto;
+    margin-right: 15px; 
 }
 
 .logo-container .mila-logo {
-    width: 200px; /* Increased size for Mila */
+    width: 150px; 
+    height: auto;
 }
 
 /* Navigation */
@@ -243,20 +245,15 @@ header nav ul li a.active {
     font-size: 2em;
 }
 
-.carousel {
-    display: flex;
-    overflow: hidden;
-    position: relative;
+.visualization-item {
+    margin-bottom: 40px;
 }
 
-.carousel-item {
-    min-width: 100%;
-    transition: transform 0.5s ease-in-out;
-    padding: 20px;
-}
-
-.carousel-item img {
+.visualization-item img {
     width: 100%;
+    max-width: 800px;
+    display: block;
+    margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
@@ -264,8 +261,17 @@ header nav ul li a.active {
 .description {
     margin-top: 20px;
     background-color: #f1f1f1;
-    padding: 15px;
+    padding: 20px;
     border-radius: 5px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.description h3 {
+    color: #ff7f50;
+    margin-bottom: 10px;
+    font-size: 1.5em;
 }
 
 .description p {
@@ -279,27 +285,8 @@ header nav ul li a.active {
     margin-top: 10px;
 }
 
-.carousel-controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-}
-
-.carousel-controls button {
-    background: rgba(0,0,0,0.5);
-    border: none;
-    color: #fff;
-    padding: 10px 15px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background 0.3s ease;
-}
-
-.carousel-controls button:hover {
-    background: rgba(0,0,0,0.7);
+.description ul li {
+    margin-bottom: 5px;
 }
 
 /* Contact Information */
@@ -410,10 +397,6 @@ footer .social-links {
         max-width: 100%;
     }
 
-    .carousel-controls button {
-        padding: 8px 12px;
-    }
-
     .summary p {
         font-size: 1.1em; /* Adjust font size for smaller screens */
     }
@@ -470,8 +453,12 @@ footer .social-links {
         font-size: 1.5em;
     }
 
-    .carousel-controls button {
-        font-size: 1em;
+    .description h3 {
+        font-size: 1.3em;
+    }
+
+    .description p {
+        font-size: 0.9em;
     }
 
     .paper-content h2 {
@@ -485,12 +472,4 @@ footer .social-links {
     .paper-content h4 {
         font-size: 1em;
     }
-}
-
-/* Toggle Button */
-.toggle-button {
-    display: none;
-    font-size: 1.5em;
-    cursor: pointer;
-    color: #333;
 }

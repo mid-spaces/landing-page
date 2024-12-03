@@ -31,7 +31,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-    
+
       gtag('config', 'YOUR_TRACKING_ID');
     </script>
 </head>
@@ -85,67 +85,73 @@
         <div class="container">
             <h2>Summary of the Paper</h2>
             <p>
-                The MID-Space project aims to democratize urban space visualization by leveraging artificial intelligence to align AI-generated visualizations with the diverse needs and preferences of Montreal’s communities. By collaborating with various community organizations and utilizing the Stable Diffusion XL model, MID-Space bridges the gap between AI capabilities and inclusive urban design. The dataset comprises over 3,000 prompts and 42,000 annotations based on criteria such as accessibility, safety, diversity, inclusivity, invitingness, and comfort. This initiative empowers marginalized groups to have a more significant influence over the design and utilization of public spaces, ensuring that these environments are equitable, diverse, and welcoming to all.
-            </p>
-            <p>
-                Our approach involves collecting a vast array of prompts that reflect real-world scenarios and preferences from diverse community members. Through meticulous annotation and data analysis, we ensure that the AI models trained on this dataset can generate visualizations that are not only aesthetically pleasing but also aligned with the fundamental values of inclusivity and diversity. The MID-Space dataset serves as a critical resource for urban planners, AI researchers, and community leaders to collaboratively design public spaces that cater to the nuanced needs of all community members.
+                The paper presents the MID-Space dataset, designed to align AI-generated images with the diverse preferences of various communities in urban public space design. By engaging community members through workshops, the researchers identified six key criteria—accessibility, safety, diversity, inclusivity, invitingness, and comfort—that define inclusive public spaces. The dataset includes textual prompts, AI-generated images, and annotations reflecting community preferences. Fine-tuning the Stable Diffusion XL (SDXL) model with this dataset enhances its ability to generate visualizations that meet the specific needs and values of different community groups, supporting urban designers in creating equitable public environments.
             </p>
         </div>
     </section>
 
-    <!-- Visualizations Carousel -->
+    <!-- Visualizations Section -->
     <section class="visualizations" data-aos="fade-up">
         <div class="container">
             <h2>Visualizations</h2>
-            <div class="carousel">
-                <div class="carousel-item">
-                    <img src="assets/images/inside-mid.png" alt="Visualization 1" loading="lazy">
-                    <div class="description">
-                        <p><strong>Summary:</strong> The paper presents the MID-Space dataset, designed to align AI-generated images with the diverse preferences of various communities in urban public space design. By engaging community members through workshops, the researchers identified six key criteria—accessibility, safety, diversity, inclusivity, invitingness, and comfort—that define inclusive public spaces. The dataset includes textual prompts, AI-generated images, and annotations reflecting community preferences. Fine-tuning the Stable Diffusion XL (SDXL) model with this dataset enhances its ability to generate visualizations that meet the specific needs and values of different community groups, supporting urban designers in creating equitable public environments.</p>
-                        <p><strong>Participatory Process:</strong> The MID-Space dataset was developed through collaboration with community organizations in Montreal. Community members participated in workshops to identify important attributes of inclusive public spaces. These sessions helped define six criteria for evaluation and gather prompts for image generation. A diverse group of annotators from various backgrounds then reviewed AI-generated images, providing preferences based on the identified criteria. This participatory approach ensured that the dataset reflects the authentic needs and priorities of different community groups.</p>
-                        <p><strong>Dataset Content and Importance:</strong> The MID-Space dataset comprises textual prompts, corresponding AI-generated images, and annotations indicating preferences across six criteria: accessibility, safety, diversity, inclusivity, invitingness, and comfort. With over 3,000 unique public space concepts and more than 60,000 annotated image pairs, the dataset captures a wide range of community preferences. This diversity is crucial for pluralistic alignment, addressing valid but differing preferences among various groups. The dataset serves as a valuable resource for AI alignment researchers and urban designers aiming to create public spaces that accommodate multiple perspectives and promote equity.</p>
-                        <p><strong>Results:</strong> The study involved fine-tuning the Stable Diffusion XL (SDXL) model using the MID-Space dataset through Direct Preference Optimization (DPO). Three versions of the model were developed:
-                            <ul>
-                                <li><strong>SDXL Original:</strong> The baseline model without fine-tuning, generating images based on its initial training data.</li>
-                                <li><strong>SDXL-DPO for Inclusion Criterion:</strong> This version was fine-tuned specifically to align image generation with the inclusion criterion, ensuring that the resulting images reflect inclusive public space attributes.</li>
-                                <li><strong>SDXL-DPO for All Six Criteria:</strong> A comprehensive model fine-tuned to consider all six criteria simultaneously, enabling the generation of images that meet multiple community-defined standards for inclusive public spaces.</li>
-                            </ul>
-                        </p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/images/part-mid.png" alt="Visualization 2" loading="lazy">
-                    <div class="description">
-                        <p><strong>Figure 2 Description:</strong> <em>Prompt:</em> A quiet, inclusive meditation garden in a busy urban area.</p>
-                        <p>Figure 2 showcases images generated by three different models using the same seed, number of generation steps (50), and guidance scale (5).</p>
-                        <p><strong>SDXL Original:</strong> Displays the baseline image generated without any fine-tuning.</p>
-                        <p><strong>SDXL-DPO for Inclusion Criterion:</strong> Shows the image refined to emphasize inclusivity based on community preferences.</p>
-                        <p><strong>SDXL-DPO for All Six Criteria:</strong> Presents the image aligned with all six criteria, reflecting a comprehensive approach to meeting diverse community needs.</p>
-                        <p>Each version illustrates how fine-tuning the model with specific criteria influences the generated visualization of the meditation garden.</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/images/creat-mid.png" alt="Visualization 3" loading="lazy">
-                    <div class="description">
-                        <p><strong>Visualization 3 Description:</strong> [Add your descriptive text here]</p>
-                        <p>[Additional paragraph 2]</p>
-                        <p>[Additional paragraph 3]</p>
-                        <p>[Additional paragraph 4]</p>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="assets/images/results-mid.png" alt="Visualization 4" loading="lazy">
-                    <div class="description">
-                        <p><strong>Visualization 4 Description:</strong> [Add your descriptive text here]</p>
-                        <p>[Additional paragraph 2]</p>
-                        <p>[Additional paragraph 3]</p>
-                        <p>[Additional paragraph 4]</p>
-                    </div>
+
+            <!-- Visualization 1 -->
+            <div class="visualization-item">
+                <img src="assets/images/inside-mid.png" alt="Visualization 1" loading="lazy">
+                <div class="description">
+                    <h3>Dataset Content and Importance</h3>
+                    <p>
+                        The MID-Space dataset comprises textual prompts, corresponding AI-generated images, and annotations indicating preferences across six criteria: accessibility, safety, diversity, inclusivity, invitingness, and comfort. With over 3,000 unique public space concepts and more than 60,000 annotated image pairs, the dataset captures a wide range of community preferences. This diversity is crucial for pluralistic alignment, addressing valid but differing preferences among various groups. The dataset serves as a valuable resource for AI alignment researchers and urban designers aiming to create public spaces that accommodate multiple perspectives and promote equity.
+                    </p>
                 </div>
             </div>
-            <div class="carousel-controls">
-                <button class="prev" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
-                <button class="next" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+
+            <!-- Visualization 2 -->
+            <div class="visualization-item">
+                <img src="assets/images/part-mid.png" alt="Visualization 2" loading="lazy">
+                <div class="description">
+                    <h3>Participatory Process</h3>
+                    <p>
+                        The MID-Space dataset was developed through collaboration with community organizations in Montreal. Community members participated in workshops to identify important attributes of inclusive public spaces. These sessions helped define six criteria for evaluation and gather prompts for image generation. A diverse group of annotators from various backgrounds then reviewed AI-generated images, providing preferences based on the identified criteria. This participatory approach ensured that the dataset reflects the authentic needs and priorities of different community groups.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visualization 3 -->
+            <div class="visualization-item">
+                <img src="assets/images/creat-mid.png" alt="Visualization 3" loading="lazy">
+                <div class="description">
+                    <h3>Methodological Steps and Rationale</h3>
+                    <p>
+                        The MID-Space dataset was developed through a collaborative process with Montreal community members to ensure it reflects diverse needs for inclusive public spaces. Initially, workshops were held to identify six key criteria: accessibility, safety, diversity, inclusivity, invitingness, and comfort. From these sessions, 440 human-generated prompts were collected and expanded with an additional 2,910 prompts using GPT-4 to enhance diversity. Stable Diffusion XL (SDXL) generated 20 images per prompt, and the four most diverse images were selected based on similarity scores. Sixteen annotators from various backgrounds then reviewed these images, providing preference annotations for each criterion. This resulted in over 60,000 annotated image pairs, which were used to fine-tune the SDXL model with Direct Preference Optimization (DPO). This methodology ensured the dataset accurately captures and aligns with the community's varied and valid preferences for equitable public space design.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visualization 4 -->
+            <div class="visualization-item">
+                <img src="assets/images/results-mid.png" alt="Visualization 4" loading="lazy">
+                <div class="description">
+                    <h3>Figure 2 Description</h3>
+                    <p>
+                        <strong>Prompt:</strong> A quiet, inclusive meditation garden in a busy urban area.
+                    </p>
+                    <p>
+                        Figure 2 showcases images generated by three different models using the same seed, number of generation steps (50), and guidance scale (5).
+                    </p>
+                    <p>
+                        <strong>SDXL Original:</strong> Displays the baseline image generated without any fine-tuning.
+                    </p>
+                    <p>
+                        <strong>SDXL-DPO for Inclusion Criterion:</strong> Shows the image refined to emphasize inclusivity based on community preferences.
+                    </p>
+                    <p>
+                        <strong>SDXL-DPO for All Six Criteria:</strong> Presents the image aligned with all six criteria, reflecting a comprehensive approach to meeting diverse community needs.
+                    </p>
+                    <p>
+                        Each version illustrates how fine-tuning the model with specific criteria influences the generated visualization of the meditation garden.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -165,7 +171,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for Carousel and Navigation Toggle -->
+    <!-- JavaScript for Navigation Toggle -->
     <script src="assets/js/scripts.js"></script>
     <!-- Initialize AOS -->
     <script>
