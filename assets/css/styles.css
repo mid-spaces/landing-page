@@ -37,7 +37,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 5px 0; /* Reduced padding */
+    padding: 5px 0; /* Reduced padding to decrease header height */
 }
 
 header .container {
@@ -53,14 +53,14 @@ header .container {
 }
 
 .logo-container .logo {
-    max-height: 50px; /* Increased from 40px */
+    max-height: 80px; /* Increased from 50px */
     width: auto;
     height: auto;
     margin-right: 15px; /* Slightly increased spacing */
 }
 
 .logo-container .mila-logo {
-    max-height: 60px; /* Increased from 45px */
+    max-height: 130px; /* Increased from 60px */
     width: auto;
     height: auto;
 }
@@ -73,14 +73,14 @@ header nav ul {
 }
 
 header nav ul li {
-    margin-left: 20px; /* Slightly reduced spacing */
+    margin-left: 25px; /* Slightly increased spacing for better visibility */
 }
 
 header nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    font-size: 1.1em; /* Increased font size */
+    font-size: 1.2em; /* Increased font size */
     line-height: 1.2; /* Reduced line-height */
     transition: color 0.3s ease;
 }
@@ -103,7 +103,7 @@ header nav ul li a.active {
         flex-direction: column;
         background: #fff;
         position: absolute;
-        top: 50px; /* Adjusted to match reduced header height */
+        top: 60px; /* Adjusted to match reduced header height */
         right: 0;
         width: 200px;
         display: none;
@@ -128,7 +128,7 @@ header nav ul li a.active {
 .hero {
     background: #ffffff;
     padding: 120px 0 60px 0;
-    margin-top: 60px; /* Adjusted to match reduced header height */
+    margin-top: 80px; /* To offset fixed header */
 }
 
 .hero-content {
@@ -280,11 +280,11 @@ header nav ul li a.active {
 .description h3 {
     color: #ff7f50;
     margin-bottom: 10px;
-    font-size: 1.2em; /* Match font size of summaries */
+    font-size: 1.4em; /* Match font size of summaries */
 }
 
 .description p {
-    font-size: 1.2em; /* Match font size of summaries */
+    font-size: 1.4em; /* Match font size of summaries */
     color: #555;
     margin-bottom: 10px;
 }
@@ -432,7 +432,7 @@ footer .social-links {
         flex-direction: column;
         background: #fff;
         position: absolute;
-        top: 50px; /* Adjusted to match reduced header height */
+        top: 60px; /* Adjusted to match reduced header height */
         right: 0;
         width: 200px;
         display: none;
@@ -471,7 +471,7 @@ footer .social-links {
     }
 
     .description h3 {
-        font-size: 1.2em;
+        font-size: 1.4em;
     }
 
     .description p {
@@ -483,7 +483,7 @@ footer .social-links {
     }
 
     .paper-content h3 {
-        font-size: 1.2em;
+        font-size: 1.4em;
     }
 
     .paper-content h4 {
@@ -493,20 +493,41 @@ footer .social-links {
 
 /* Additional Styles */
 
-/* Ensure logos are responsive */
+/* Ensure logos are responsive and fit well within the header */
 .logo-container .logo {
-    max-height: 50px; /* Increased from 40px */
+    max-height: 60px; /* Increased from 50px */
     width: auto;
     height: auto;
 }
 
 .logo-container .mila-logo {
-    max-height: 60px; /* Increased from 45px */
+    max-height: 70px; /* Increased from 60px */
     width: auto;
     height: auto;
 }
 
-/* Adjust navigation link font sizes */
+/* Adjust navigation link font sizes for better visibility */
 header nav ul li a {
-    font-size: 1.1em; /* Increased font size */
+    font-size: 1.2em; /* Increased font size */
+}
+
+/* Align the summary section to the right */
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Shift content to the right */
+}
+
+.summary-content h2 {
+    margin-bottom: 20px;
+    color: #ff7f50;
+    font-size: 2em;
+}
+
+.summary-content p {
+    max-width: 800px;
+    text-align: left;
+    color: #555;
+    font-size: 1.2em; /* Match font size of summaries */
+    line-height: 1.6;
 }
