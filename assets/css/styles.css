@@ -5,7 +5,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
 /* Reset CSS */
 * {
     margin: 0;
@@ -46,8 +45,14 @@ header .container {
     justify-content: space-between;
 }
 
-header .logo {
-    width: 150px;
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container .logo {
+    width: 120px;
+    margin-right: 10px;
 }
 
 header nav ul {
@@ -74,7 +79,7 @@ header nav ul li a.active {
 /* Hero Section */
 .hero {
     background: #ffffff;
-    padding: 100px 0 60px 0;
+    padding: 120px 0 60px 0;
     margin-top: 80px; /* To offset fixed header */
 }
 
@@ -88,6 +93,7 @@ header nav ul li a.active {
 .hero-text {
     flex: 1;
     min-width: 300px;
+    text-align: left;
 }
 
 .hero-text h1 {
@@ -162,6 +168,28 @@ header nav ul li a.active {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* Summary Section */
+.summary {
+    background: #fff;
+    padding: 60px 0;
+    text-align: left;
+}
+
+.summary h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #ff7f50;
+    font-size: 2em;
+}
+
+.summary p {
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    text-align: left;
+    color: #555;
+    font-size: 1.1em;
+}
+
 /* Visualizations Section */
 .visualizations {
     background: #fff;
@@ -215,59 +243,16 @@ header nav ul li a.active {
     background: rgba(0,0,0,0.7);
 }
 
-/* Sections */
-section {
-    padding: 60px 0;
-}
-
-section.about, section.paper, section.organization, section.dataset-section, section.contact-section {
+/* Contact Information */
+.contact-info {
     background: #fff;
+    padding: 60px 0;
+    text-align: center;
 }
 
-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #ff7f50;
-    font-size: 2em;
-}
-
-section p {
-    max-width: 800px;
-    margin: 0 auto 20px auto;
-    text-align: center;
+.contact-info p {
     color: #555;
     font-size: 1.1em;
-}
-
-section ul {
-    list-style: none;
-    max-width: 800px;
-    margin: 0 auto 20px auto;
-    padding-left: 0;
-}
-
-section ul li {
-    background: url('assets/images/checkmark.svg') no-repeat left center;
-    padding-left: 30px;
-    margin-bottom: 10px;
-    color: #333;
-    font-size: 1.1em;
-}
-
-/* Buttons */
-.btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-    margin-top: 15px;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
 }
 
 /* Footer */
@@ -301,6 +286,22 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
 }
 
 /* Responsive */
@@ -341,7 +342,6 @@ footer a:hover {
 
     .toggle-button {
         display: block;
-        cursor: pointer;
     }
 }
 
@@ -358,7 +358,6 @@ footer a:hover {
         font-size: 1em;
     }
 }
-
 
 /* Toggle Button */
 .toggle-button {

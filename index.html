@@ -15,6 +15,7 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6zQ5/Jt5Vv8gUPK/PgKjG1hgZHR1KJ+vWBbZ27ZKAXSf4VhUYxvMqenGEXBw2OxW4RR2w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
+    <!-- Favicon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
     <!-- AOS (Animate On Scroll) -->
@@ -31,21 +32,21 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
     
-      gtag('config', 'YOUR_TRACKING_ID');
+      gtag('config', 'TRACKING_ID_DO_SETUP');
     </script>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container">
-            <img src="assets/images/logo.png" alt="MID-Space Logo" class="logo">
+            <div class="logo-container">
+                <img src="assets/images/mila.png" alt="Mila Logo" class="logo">
+                <img src="assets/images/unesco.png" alt="UNESCO Logo" class="logo">
+            </div>
             <nav>
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="paper.html">Paper</a></li>
-                    <li><a href="dataset.html">Dataset</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                 </ul>
                 <button class="toggle-button" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
@@ -75,6 +76,16 @@
         </div>
     </section>
 
+    <!-- Summary Section -->
+    <section class="summary" data-aos="fade-up">
+        <div class="container">
+            <h2>Summary of the Paper</h2>
+            <p>
+                The MID-Space project aims to democratize urban space visualization by leveraging artificial intelligence to align AI-generated visualizations with the diverse needs and preferences of Montreal’s communities. By collaborating with various community organizations and utilizing the Stable Diffusion XL model, MID-Space bridges the gap between AI capabilities and inclusive urban design. The dataset comprises over 3,000 prompts and 42,000 annotations based on criteria such as accessibility, safety, diversity, inclusivity, invitingness, and comfort. This initiative empowers marginalized groups to have a more significant influence over the design and utilization of public spaces, ensuring that these environments are equitable, diverse, and welcoming to all.
+            </p>
+        </div>
+    </section>
+
     <!-- Visualizations Carousel -->
     <section class="visualizations" data-aos="fade-up">
         <div class="container">
@@ -100,35 +111,10 @@
         </div>
     </section>
 
-    <!-- About the Dataset -->
-    <section class="about" data-aos="fade-up">
+    <!-- Contact Information -->
+    <section class="contact-info" data-aos="fade-up">
         <div class="container">
-            <h2>About the MID-Space Dataset</h2>
-            <p>The MID-Space dataset is designed to bridge the gap between AI-generated visualizations and diverse communities’ preferences in urban public space design. It includes textual prompts, AI-generated images, and annotations based on criteria such as accessibility, safety, diversity, inclusivity, invitingness, and comfort.</p>
-            <ul>
-                <li>3,350 diverse prompts covering various public space scenarios</li>
-                <li>42,131 annotations from 16 diverse participants</li>
-                <li>Integrated with Stable Diffusion XL for enhanced alignment with human preferences</li>
-            </ul>
-            <a href="dataset.html" class="btn">Learn More</a>
-        </div>
-    </section>
-
-    <!-- Research Paper -->
-    <section class="paper" data-aos="fade-up">
-        <div class="container">
-            <h2>Research Paper</h2>
-            <p>Our paper, accepted at NeurIPS 2024, details the development and utility of the MID-Space dataset in aligning AI-generated visualizations with community preferences.</p>
-            <a href="paper.html" class="btn">Read the Paper</a>
-        </div>
-    </section>
-
-    <!-- Organization Information -->
-    <section class="organization" data-aos="fade-up">
-        <div class="container">
-            <h2>About Our Organization</h2>
-            <p>We are committed to fostering inclusive and equitable public spaces through innovative AI solutions. Our organization collaborates with community groups to ensure diverse needs are met in urban design.</p>
-            <a href="about.html" class="btn">Visit Our Website</a>
+            <p><strong>For more information, contact:</strong> <a href="mailto:rashidmushkani@gmail.com">rashidmushkani@gmail.com</a></p>
         </div>
     </section>
 
