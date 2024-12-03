@@ -37,7 +37,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 10px 0; /* Reduced padding to decrease header height */
+    padding: 30px 0; /* Reduced padding to decrease header height */
 }
 
 header .container {
@@ -53,13 +53,13 @@ header .container {
 
 .logo-container .logo {
     width: 130px; /* UNESCO logo width */
-    height: auto; /* Maintain aspect ratio */
+    height: 100%; /* Maintain aspect ratio */
     margin-right: 15px; /* Spacing between logos */
 }
 
 .logo-container .mila-logo {
     width: 150px; /* Mila logo width */
-    height: auto; /* Maintain aspect ratio */
+    height: 100%; /* Maintain aspect ratio */
 }
 
 /* Navigation */
