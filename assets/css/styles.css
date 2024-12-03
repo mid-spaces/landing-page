@@ -37,46 +37,51 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 30px 0; /* Reduced padding to decrease header height */
+    padding: 5px 0; /* Reduced padding */
 }
 
 header .container {
     display: flex;
-    align-items: center;
+    align-items: center; /* Ensures vertical centering */
     justify-content: space-between;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
+    margin-bottom: 0; /* Removed extra margin */
 }
 
 .logo-container .logo {
-    width: 130px; /* UNESCO logo width */
-    height: 100%; /* Maintain aspect ratio */
-    margin-right: 15px; /* Spacing between logos */
+    max-height: 50px; /* Increased from 40px */
+    width: auto;
+    height: auto;
+    margin-right: 15px; /* Slightly increased spacing */
 }
 
 .logo-container .mila-logo {
-    width: 150px; /* Mila logo width */
-    height: 100%; /* Maintain aspect ratio */
+    max-height: 60px; /* Increased from 45px */
+    width: auto;
+    height: auto;
 }
 
 /* Navigation */
 header nav ul {
     list-style: none;
     display: flex;
+    margin: 0; /* Removed default margin */
 }
 
 header nav ul li {
-    margin-left: 30px;
+    margin-left: 20px; /* Slightly reduced spacing */
 }
 
 header nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    font-size: 1.4em; /* Increased font size */
+    font-size: 1.1em; /* Increased font size */
+    line-height: 1.2; /* Reduced line-height */
     transition: color 0.3s ease;
 }
 
@@ -98,7 +103,7 @@ header nav ul li a.active {
         flex-direction: column;
         background: #fff;
         position: absolute;
-        top: 60px; /* Adjusted to match reduced header height */
+        top: 50px; /* Adjusted to match reduced header height */
         right: 0;
         width: 200px;
         display: none;
@@ -122,7 +127,7 @@ header nav ul li a.active {
 /* Hero Section */
 .hero {
     background: #ffffff;
-    padding: 100px 0 60px 0;
+    padding: 120px 0 60px 0;
     margin-top: 60px; /* Adjusted to match reduced header height */
 }
 
@@ -218,16 +223,20 @@ header nav ul li a.active {
     text-align: left;
 }
 
-.summary h2 {
-    text-align: left;
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Shifted to the right */
+}
+
+.summary-content h2 {
     margin-bottom: 20px;
     color: #ff7f50;
     font-size: 2em;
 }
 
-.summary p {
+.summary-content p {
     max-width: 800px;
-    margin: 0 auto 20px auto;
     text-align: left;
     color: #555;
     font-size: 1.2em; /* Match font size of summaries */
@@ -397,6 +406,14 @@ footer .social-links {
         max-width: 100%;
     }
 
+    .summary-content {
+        align-items: center; /* Center align on smaller screens */
+    }
+
+    .summary-content p {
+        text-align: center;
+    }
+
     .summary p {
         font-size: 1.1em; /* Adjust font size for smaller screens */
     }
@@ -415,7 +432,7 @@ footer .social-links {
         flex-direction: column;
         background: #fff;
         position: absolute;
-        top: 60px; /* Adjusted to match reduced header height */
+        top: 50px; /* Adjusted to match reduced header height */
         right: 0;
         width: 200px;
         display: none;
@@ -478,13 +495,13 @@ footer .social-links {
 
 /* Ensure logos are responsive */
 .logo-container .logo {
-    max-height: 50px; /* Adjust as needed */
+    max-height: 50px; /* Increased from 40px */
     width: auto;
     height: auto;
 }
 
 .logo-container .mila-logo {
-    max-height: 60px; /* Adjust as needed */
+    max-height: 60px; /* Increased from 45px */
     width: auto;
     height: auto;
 }
