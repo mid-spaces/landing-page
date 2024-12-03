@@ -239,7 +239,7 @@ header nav ul li a.active {
     max-width: 800px;
     text-align: left;
     color: #555;
-    font-size: 1.2em; /* Match font size of summaries */
+    font-size: 1.4em; /* Match font size of summaries */
     line-height: 1.6;
 }
 
