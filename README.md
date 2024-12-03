@@ -76,7 +76,7 @@ mid-space-landing-page-template/
 │   │   └── styles.css
 │   ├── images/
 │   │   ├── logo.png
-│   │   ├── hero.jpg
+│   │   ├── hero.png
 │   │   ├── visualization1.jpg
 │   │   ├── visualization2.jpg
 │   │   ├── visualization3.jpg
