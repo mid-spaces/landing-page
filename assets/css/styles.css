@@ -252,12 +252,31 @@ header nav ul li a.active {
 .carousel-item {
     min-width: 100%;
     transition: transform 0.5s ease-in-out;
+    padding: 20px;
 }
 
 .carousel-item img {
     width: 100%;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.description {
+    margin-top: 20px;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.description p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.description ul {
+    list-style: disc inside;
+    margin-top: 10px;
 }
 
 .carousel-controls {
@@ -402,6 +421,10 @@ footer .social-links {
     .paper-content {
         padding: 0 20px;
     }
+
+    .description p {
+        font-size: 1em;
+    }
 }
 
 @media (max-width: 768px) {
@@ -432,6 +455,10 @@ footer .social-links {
     .paper-content {
         padding: 0 10px;
     }
+
+    .description {
+        padding: 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -458,4 +485,12 @@ footer .social-links {
     .paper-content h4 {
         font-size: 1em;
     }
+}
+
+/* Toggle Button */
+.toggle-button {
+    display: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #333;
 }
