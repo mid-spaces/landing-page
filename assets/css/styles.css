@@ -37,6 +37,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
+    padding: 10px 0; /* Reduced padding to decrease header height */
 }
 
 header .container {
@@ -51,14 +52,14 @@ header .container {
 }
 
 .logo-container .logo {
-    width: 70px; /
-    height: auto;
-    margin-right: 15px; 
+    width: 80px; /* UNESCO logo width */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 15px; /* Spacing between logos */
 }
 
 .logo-container .mila-logo {
-    width: 150px; 
-    height: auto;
+    width: 100px; /* Mila logo width */
+    height: auto; /* Maintain aspect ratio */
 }
 
 /* Navigation */
@@ -75,6 +76,7 @@ header nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
+    font-size: 1.1em; /* Increased font size */
     transition: color 0.3s ease;
 }
 
@@ -96,7 +98,7 @@ header nav ul li a.active {
         flex-direction: column;
         background: #fff;
         position: absolute;
-        top: 70px;
+        top: 60px; /* Adjusted to match reduced header height */
         right: 0;
         width: 200px;
         display: none;
@@ -121,7 +123,7 @@ header nav ul li a.active {
 .hero {
     background: #ffffff;
     padding: 120px 0 60px 0;
-    margin-top: 80px; /* To offset fixed header */
+    margin-top: 60px; /* Adjusted to match reduced header height */
 }
 
 .hero-content {
@@ -228,7 +230,7 @@ header nav ul li a.active {
     margin: 0 auto 20px auto;
     text-align: left;
     color: #555;
-    font-size: 1.2em; /* Increased text size */
+    font-size: 1.2em; /* Match font size of summaries */
     line-height: 1.6;
 }
 
@@ -239,10 +241,8 @@ header nav ul li a.active {
 }
 
 .visualizations h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    color: #ff7f50;
-    font-size: 2em;
+    /* Removed the "Visualizations" title */
+    display: none;
 }
 
 .visualization-item {
@@ -271,11 +271,11 @@ header nav ul li a.active {
 .description h3 {
     color: #ff7f50;
     margin-bottom: 10px;
-    font-size: 1.5em;
+    font-size: 1.2em; /* Match font size of summaries */
 }
 
 .description p {
-    font-size: 1em;
+    font-size: 1.2em; /* Match font size of summaries */
     color: #555;
     margin-bottom: 10px;
 }
@@ -406,7 +406,7 @@ footer .social-links {
     }
 
     .description p {
-        font-size: 1em;
+        font-size: 1.2em; /* Ensure consistency */
     }
 }
 
@@ -415,7 +415,7 @@ footer .social-links {
         flex-direction: column;
         background: #fff;
         position: absolute;
-        top: 70px;
+        top: 60px; /* Adjusted to match reduced header height */
         right: 0;
         width: 200px;
         display: none;
@@ -454,11 +454,11 @@ footer .social-links {
     }
 
     .description h3 {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
 
     .description p {
-        font-size: 0.9em;
+        font-size: 1.2em;
     }
 
     .paper-content h2 {
@@ -472,4 +472,24 @@ footer .social-links {
     .paper-content h4 {
         font-size: 1em;
     }
+}
+
+/* Additional Styles */
+
+/* Ensure logos are responsive */
+.logo-container .logo {
+    max-height: 50px; /* Adjust as needed */
+    width: auto;
+    height: auto;
+}
+
+.logo-container .mila-logo {
+    max-height: 60px; /* Adjust as needed */
+    width: auto;
+    height: auto;
+}
+
+/* Adjust navigation link font sizes */
+header nav ul li a {
+    font-size: 1.1em; /* Increased font size */
 }
