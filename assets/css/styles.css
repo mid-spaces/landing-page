@@ -60,7 +60,7 @@ header .container {
 }
 
 .logo-container .mila-logo {
-    max-height: 10px; /* Increased from 60px */
+    max-height: 50px; /* Reduced from 70px */
     width: auto;
     height: auto;
 }
@@ -127,13 +127,13 @@ header nav ul li a.active {
 /* Hero Section */
 .hero {
     background: #ffffff;
-    padding: 120px 0 60px 0;
+    padding: 100px 0 40px 0; /* Reduced top and bottom padding */
     margin-top: 80px; /* To offset fixed header */
 }
 
 .hero-content {
     display: flex;
-    align-items: flex-start; /* Align to the left */
+    align-items: flex-start; /* Align to the top */
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -152,7 +152,7 @@ header nav ul li a.active {
 
 .hero-text h2 {
     font-size: 1.8em;
-    margin-bottom: 10px;
+    margin-bottom: 10px; /* Reduced margin-bottom */
     color: #555;
 }
 
@@ -214,20 +214,21 @@ header nav ul li a.active {
     max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 20px; /* Reduced margin-bottom */
 }
 
 /* Summary Section */
 .summary {
     background: #fff;
-    padding: 60px 0;
+    padding: 40px 0; /* Reduced padding to minimize space */
     text-align: left;
 }
 
 .summary h2 {
-    margin-bottom: 5px;
+    margin-bottom: 15px; /* Adjusted margin for better spacing */
     color: #ff7f50;
     font-size: 2.2em;
-    text-align: center; /* Ensure left alignment */
+    text-align: left; /* Ensure left alignment */
 }
 
 .summary p {
@@ -242,7 +243,7 @@ header nav ul li a.active {
 /* Visualizations Section */
 .visualizations {
     background: #fff;
-    padding: 60px 0;
+    padding: 40px 0; /* Reduced padding to minimize space */
 }
 
 .visualizations h2 {
@@ -361,7 +362,7 @@ footer a:hover {
 
 .paper-content h3 {
     font-size: 1.4em;
-    margin-top: 15px;
+    margin-top: 15px; /* Reduced margin-top for better spacing */
     color: #555;
 }
 
@@ -489,7 +490,7 @@ footer .social-links {
 }
 
 .logo-container .mila-logo {
-    max-height: 70px; /* Increased from 60px */
+    max-height: 50px; /* Reduced from 70px */
     width: auto;
     height: auto;
 }
