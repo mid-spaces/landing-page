@@ -5,16 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MID-Space: Aligning Diverse Communities’ Needs to Inclusive Public Spaces</title>
-    <meta name="description" content="MID-Space: A dataset aligning diverse community needs to inclusive public spaces using AI tools.">
-    <meta name="keywords" content="MID-Space, Inclusive Public Spaces, AI, Dataset, NeurIPS 2024, Urban Design">
-    <meta name="author" content="Your Name or Organization">
+    <meta name="description" content="MID-Space: A comprehensive dataset aligning AI-generated visualizations with diverse community preferences for inclusive public spaces. Enhance urban design with our innovative AI tools.">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="MID-Space: Aligning Diverse Communities’ Needs to Inclusive Public Spaces">
+    <meta property="og:description" content="Explore the MID-Space dataset that bridges AI-generated visualizations with community preferences to foster inclusive urban design.">
+    <meta property="og:image" content="https://mid-spaces.github.io/assets/images/your-image.jpg">
+    <meta property="og:url" content="https://mid-spaces.github.io/">
+    <meta property="og:type" content="website">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MID-Space",
+      "url": "https://mid-spaces.github.io/",
+      "description": "MID-Space: A comprehensive dataset aligning AI-generated visualizations with diverse community preferences for inclusive public spaces. Enhance urban design with our innovative AI tools.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://mid-spaces.github.io/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHq6zQ5/Jt5Vv8gUPK/PgKjG1hgZHR1KJ+vWBbZ27ZKAXSf4VhUYxvMqenGEXBw2OxW4RR2w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-dyvAozBTULJ9pHSAT2mCBRgdoLr6P6NsFo58IaNqq0kaN3ZkJdt4LpiRvdbusC3rE9F2eztjr5RJUJHgjF1ChA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- Favicon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 
@@ -49,8 +70,8 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="paper.html">Paper</a></li>
+                    <li class="home-link"><a href="index.html" class="active">Home</a></li>
+                    <li class="paper-link"><a href="paper.html">Paper</a></li>
                 </ul>
                 <button class="toggle-button" aria-label="Toggle navigation">
                     <i class="fas fa-bars"></i>
@@ -85,7 +106,7 @@
         <div class="container">
             <h2>Summary</h2>
             <p>
-                The paper presents the MID-Space dataset, designed to align AI-generated images with the diverse preferences of various communities in urban public space design. By engaging community members through workshops, the researchers identified six key criteria—accessibility, safety, diversity, inclusivity, invitingness, and comfort—that define inclusive public spaces. The dataset includes textual prompts, AI-generated images, and annotations reflecting community preferences. Fine-tuning the Stable Diffusion XL (SDXL) model with this dataset enhances its ability to generate visualizations that meet the specific needs and values of different community groups, supporting urban designers in creating equitable public environments.
+                MID-Space integrates AI with urban design to enhance public spaces according to community input. The dataset includes 3,350 prompts, 16,694 images, and over 42,000 annotations focused on six key criteria: accessibility, safety, diversity, inclusivity, invitingness, and comfort. This initiative supports urban designers by providing tools that reflect and respect diverse community values.
             </p>
         </div>
     </section>
@@ -99,9 +120,9 @@
             <div class="visualization-item">
                 <img src="assets/images/inside-mid.png" alt="Visualization 1" loading="lazy">
                 <div class="description">
-                    <h3>Dataset Content</h3>
+                    <h3>Dataset Content Overview</h3>
                     <p>
-                        The MID-Space dataset comprises textual prompts, corresponding AI-generated images, and annotations indicating preferences across six criteria: accessibility, safety, diversity, inclusivity, invitingness, and comfort. With over 3,000 unique public space concepts and more than 60,000 annotated image pairs, the dataset captures a wide range of community preferences. This diversity is crucial for pluralistic alignment, addressing valid but differing preferences among various groups. The dataset serves as a resource for AI alignment researchers and urban designers aiming to create public spaces that accommodate multiple perspectives and promote equity.
+                        The MID-Space dataset offers a wide range of public space ideas, represented through numerous AI-generated images and detailed by extensive community annotations. These annotations cover varied community preferences, crucial for creating universally accessible and equitable urban spaces.
                     </p>
                 </div>
             </div>
@@ -112,7 +133,7 @@
                 <div class="description">
                     <h3>Participatory Process</h3>
                     <p>
-                        The MID-Space dataset was developed through collaboration with community organizations in Montreal. Community members participated in workshops to identify important attributes of inclusive public spaces. These sessions helped define six criteria for evaluation and gather prompts for image generation. A diverse group of annotators from various backgrounds then reviewed AI-generated images, providing preferences based on the identified criteria. This participatory approach ensured that the dataset reflects the authentic needs and priorities of different community groups.
+                        MID-Space was developed in partnership with Montreal’s community organizations, employing a hands-on approach that involves local residents. By contributing to every step, from defining criteria to reviewing images, community members ensure the dataset truly represents diverse urban needs.
                     </p>
                 </div>
             </div>
@@ -123,7 +144,7 @@
                 <div class="description">
                     <h3>Methodological Steps and Rationale</h3>
                     <p>
-                        The MID-Space dataset was developed through a collaborative process with Montreal community members to ensure it reflects diverse needs for inclusive public spaces. Initially, workshops were held to identify six key criteria: accessibility, safety, diversity, inclusivity, invitingness, and comfort. From these sessions, 440 human-generated prompts were collected and expanded with an additional 2,910 prompts using GPT-4 to enhance diversity. Stable Diffusion XL (SDXL) generated 20 images per prompt, and the four most diverse images were selected based on similarity scores. Sixteen annotators from various backgrounds then reviewed these images, providing preference annotations for each criterion. This resulted in over 60,000 annotated image pairs, which were used to fine-tune the SDXL model with Direct Preference Optimization (DPO). This methodology ensured the dataset accurately captures and aligns with the community's varied and valid preferences for equitable public space design.
+                        The development of MID-Space followed a structured process to accurately reflect community needs. Starting with initial workshops to identify what makes spaces inclusive, the project advanced through prompt creation, image generation, and detailed annotation, illustrating a thorough method for developing responsive public spaces.
                     </p>
                 </div>
             </div>
@@ -132,21 +153,9 @@
             <div class="visualization-item">
                 <img src="assets/images/results-mid.png" alt="Visualization 4" loading="lazy">
                 <div class="description">
-                    <h3>Prompt: A quiet, inclusive meditation garden in a busy urban area.</h3>
+                    <h3>Results - Direct Preference Optimization (DPO)</h3>
                     <p>
-                        Figure showcases images generated by three different models using the same seed, number of generation steps (50), and guidance scale (5).
-                    </p>
-                    <p>
-                        <strong>SDXL Original:</strong> Displays the baseline image generated without any fine-tuning.
-                    </p>
-                    <p>
-                        <strong>SDXL-DPO for Inclusion Criterion:</strong> Shows the image refined to emphasize inclusivity based on community preferences.
-                    </p>
-                    <p>
-                        <strong>SDXL-DPO for All Six Criteria:</strong> Presents the image aligned with all six criteria, reflecting a comprehensive approach to meeting diverse community needs.
-                    </p>
-                    <p>
-                        Each version illustrates how fine-tuning the model with specific criteria influences the generated visualization of the meditation garden.
+                        This section shows how fine-tuning the AI model using Direct Preference Optimization affects image outputs. Comparing images of a meditation garden—original, inclusivity-optimized, and fully criteria-optimized—highlights how precisely the model can meet specific community preferences, leading to more relevant and functional urban spaces.
                     </p>
                 </div>
             </div>
@@ -163,7 +172,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 MID-Space - CUPUM & Mila. All rights reserved.</p>
+            <p>&copy; 2024 MID-Space - UNESCO Chair in Urban Landscape & Mila. All rights reserved.</p>
             <p><a href="LICENSE">Template License (MIT)</a></p>
         </div>
     </footer>

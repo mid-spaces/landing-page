@@ -18,6 +18,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f9f9f9;
+    font-size: 1.2em; /* Increased base font size */
 }
 
 /* Container */
@@ -37,30 +38,30 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 5px 0; /* Reduced padding to decrease header height */
+    padding: 10px 0; /* Increased padding for better spacing */
 }
 
 header .container {
     display: flex;
-    align-items: center; /* Ensures vertical centering */
+    align-items: center;
     justify-content: space-between;
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    margin-bottom: 0; /* Removed extra margin */
+    margin-bottom: 0;
 }
 
 .logo-container .logo {
-    max-height: 90px; /* Increased from 50px */
+    max-height: 60px;
     width: auto;
     height: auto;
-    margin-right: 15px; /* Slightly increased spacing */
+    margin-right: 15px;
 }
 
 .logo-container .mila-logo {
-    max-height: 40px; /* Reduced from 70px */
+    max-height: 80px; /* Further increased for better visibility */
     width: auto;
     height: auto;
 }
@@ -69,19 +70,19 @@ header .container {
 header nav ul {
     list-style: none;
     display: flex;
-    margin: 0; /* Removed default margin */
+    margin: 0;
 }
 
 header nav ul li {
-    margin-left: 25px; /* Slightly increased spacing for better visibility */
+    margin-left: 25px;
 }
 
 header nav ul li a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    font-size: 1.2em; /* Increased font size */
-    line-height: 1.2; /* Reduced line-height */
+    font-size: 1.2em;
+    line-height: 1.6;
     transition: color 0.3s ease;
 }
 
@@ -98,12 +99,13 @@ header nav ul li a.active {
     color: #333;
 }
 
+/* Responsive Navigation */
 @media (max-width: 768px) {
     header nav ul {
         flex-direction: column;
         background: #fff;
         position: absolute;
-        top: 60px; /* Adjusted to match reduced header height */
+        top: 60px;
         right: 0;
         width: 200px;
         display: none;
@@ -122,18 +124,41 @@ header nav ul li a.active {
     .toggle-button {
         display: block;
     }
+
+    /* Show both "Home" and "Paper" as icons in mobile view */
+    header nav ul li.home-link a::before {
+        content: "\f015"; /* Font Awesome home icon */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: 8px;
+    }
+
+    header nav ul li.paper-link a::before {
+        content: "\f1c1"; /* Font Awesome paper icon */
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: 8px;
+    }
+
+    /* Adjust link display for icons */
+    header nav ul li a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em; /* Ensure icons and text are the same size */
+    }
 }
 
 /* Hero Section */
 .hero {
     background: #ffffff;
-    padding: 100px 0 40px 0; /* Reduced top and bottom padding */
-    margin-top: 80px; /* To offset fixed header */
+    padding: 120px 0 20px 0; /* Increased top padding to account for fixed header */
+    margin-top: 80px;
 }
 
 .hero-content {
     display: flex;
-    align-items: flex-start; /* Align to the top */
+    align-items: flex-start;
     justify-content: space-between;
     flex-wrap: wrap;
 }
@@ -145,62 +170,86 @@ header nav ul li a.active {
 }
 
 .hero-text h1 {
-    font-size: 3em;
+    font-size: 2em;
     color: #ff7f50;
     margin-bottom: 10px;
 }
 
 .hero-text h2 {
-    font-size: 1.8em;
-    margin-bottom: 10px; /* Reduced margin-bottom */
+    font-size: 1.6em;
+    margin-bottom: 10px;
     color: #555;
 }
 
 .hero-text p {
-    font-size: 1.1em;
+    font-size: 1em;
     margin-bottom: 30px;
     color: #666;
 }
 
-.hero-buttons .btn {
-    padding: 12px 25px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.3s ease;
-    display: inline-block;
-    margin-right: 15px;
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
 }
 
-.primary-btn {
+.hero-buttons .btn {
+    flex: 1 1 30%;
+    text-align: center;
+    min-width: 100px;
+}
+
+.hero-buttons .btn.primary-btn {
     background: #ff7f50;
     color: #fff;
 }
 
-.primary-btn:hover {
+.hero-buttons .btn.primary-btn:hover {
     background: #e76f3b;
     transform: translateY(-3px);
 }
 
-.secondary-btn {
+.hero-buttons .btn.secondary-btn {
     background: #333;
     color: #fff;
 }
 
-.secondary-btn:hover {
+.hero-buttons .btn.secondary-btn:hover {
     background: #555;
     transform: translateY(-3px);
 }
 
-.code-btn {
+.hero-buttons .btn.code-btn {
     background: #6e5494;
     color: #fff;
 }
 
-.code-btn:hover {
+.hero-buttons .btn.code-btn:hover {
     background: #59417d;
     transform: translateY(-3px);
+}
+
+@media (max-width: 768px) {
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-buttons .btn {
+        flex: 1 1 45%;
+        margin: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-buttons .btn {
+        flex: 1 1 100%;
+        max-width: 300px;
+    }
+
+    .hero-buttons .btn.code-btn {
+        margin-bottom: 10px; /* Add bottom margin to the "View Code" button */
+    }
 }
 
 .hero-image {
@@ -214,74 +263,75 @@ header nav ul li a.active {
     max-width: 500px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin-bottom: 20px; /* Reduced margin-bottom */
+    margin-bottom: 20px;
 }
 
 /* Summary Section */
 .summary {
     background: #fff;
-    padding: 40px 0; /* Reduced padding to minimize space */
+    padding: 30px 0;
     text-align: left;
 }
 
 .summary h2 {
-    margin-bottom: 15px; /* Adjusted margin for better spacing */
+    margin-bottom: 15px;
     color: #ff7f50;
-    font-size: 2.2em;
-    text-align: center; /* Ensure left alignment */
+    font-size: 1.8em;
+    text-align: left;
 }
 
 .summary p {
-    max-width: 800px;
-    margin: 0 auto; /* Center the paragraph within the container */
-    text-align: left; /* Ensure left alignment */
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: left;
     color: #555;
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1.6;
+    margin-bottom: 20px; /* Reduced space below the paragraph */
 }
 
 /* Visualizations Section */
 .visualizations {
     background: #fff;
-    padding: 40px 0; /* Reduced padding to minimize space */
+    padding: 30px 0;
 }
 
 .visualizations h2 {
-    /* Removed the "Visualizations" title */
     display: none;
 }
 
 .visualization-item {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .visualization-item img {
     width: 100%;
-    max-width: 800px;
+    max-width: 1200px;
     display: block;
     margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom: 10px;
 }
 
 .description {
-    margin-top: 20px;
-    background-color: #f1f1f1;
-    padding: 20px;
-    border-radius: 5px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    width: 100%;
+    max-width: 1200px;
+    text-align: left;
+    padding: 10px 0;
 }
 
 .description h3 {
     color: #ff7f50;
     margin-bottom: 10px;
-    font-size: 1.2em; /* Match font size of summaries */
+    font-size: 1.6em;
 }
 
 .description p {
-    font-size: 1.2em; /* Match font size of summaries */
+    font-size: 1em;
     color: #555;
     margin-bottom: 10px;
 }
@@ -298,26 +348,26 @@ header nav ul li a.active {
 /* Contact Information */
 .contact-info {
     background: #fff;
-    padding: 60px 0;
+    padding: 40px 0; /* Reduced padding to match overall design */
     text-align: center;
 }
 
 .contact-info p {
     color: #555;
-    font-size: 1.1em;
+    font-size: 1.2em; /* Reduced font size to match website content */
 }
 
 /* Footer */
 footer {
     background: #333;
     color: #fff;
-    padding: 30px 0;
+    padding: 20px 0; /* Reduced padding to match overall design */
     text-align: center;
 }
 
 footer p {
     margin-top: 15px;
-    font-size: 0.9em;
+    font-size: 1.2em; /* Reduced font size to match website content */
 }
 
 footer a {
@@ -347,10 +397,10 @@ footer a:hover {
 
 /* Paper Content */
 .paper-content {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 40px auto;
     text-align: left;
-    font-size: 1.1em; /* Increased body text size */
+    font-size: 1em;
     line-height: 1.8;
 }
 
@@ -361,19 +411,19 @@ footer a:hover {
 }
 
 .paper-content h3 {
-    font-size: 1.4em;
-    margin-top: 15px; /* Reduced margin-top for better spacing */
+    font-size: 1.6em;
+    margin-top: 15px;
     color: #555;
 }
 
 .paper-content h4 {
-    font-size: 1.2em;
+    font-size: 1.6em;
     margin-top: 20px;
     color: #555;
 }
 
 .paper-content p {
-    font-size: 1.1em;
+    font-size: 1em;
     line-height: 1.8;
     color: #555;
     margin-bottom: 15px;
@@ -404,7 +454,7 @@ footer .social-links {
     }
 
     .summary p {
-        font-size: 1.1em; /* Adjust font size for smaller screens */
+        font-size: 1em;
     }
 
     .paper-content {
@@ -412,7 +462,15 @@ footer .social-links {
     }
 
     .description p {
-        font-size: 1.2em; /* Ensure consistency */
+        font-size: 1em;
+    }
+
+    .summary {
+        padding: 25px 0;
+    }
+
+    .visualizations {
+        padding: 25px 0;
     }
 }
 
@@ -421,7 +479,7 @@ footer .social-links {
         flex-direction: column;
         background: #fff;
         position: absolute;
-        top: 60px; /* Adjusted to match reduced header height */
+        top: 60px;
         right: 0;
         width: 200px;
         display: none;
@@ -456,15 +514,15 @@ footer .social-links {
     }
 
     .hero-text h2 {
-        font-size: 1.5em;
+        font-size: 1.6em;
     }
 
     .description h3 {
-        font-size: 1.2em;
+        font-size: 1.6em;
     }
 
     .description p {
-        font-size: 1.2em;
+        font-size: 1em;
     }
 
     .paper-content h2 {
@@ -472,11 +530,11 @@ footer .social-links {
     }
 
     .paper-content h3 {
-        font-size: 1.2em;
+        font-size: 1.6em;
     }
 
     .paper-content h4 {
-        font-size: 1em;
+        font-size: 1.6em;
     }
 }
 
@@ -484,18 +542,18 @@ footer .social-links {
 
 /* Ensure logos are responsive and fit well within the header */
 .logo-container .logo {
-    max-height: 60px; /* Increased from 50px */
+    max-height: 60px;
     width: auto;
     height: auto;
 }
 
 .logo-container .mila-logo {
-    max-height: 50px; /* Reduced from 70px */
+    max-height: 80px;
     width: auto;
     height: auto;
 }
 
 /* Adjust navigation link font sizes for better visibility */
 header nav ul li a {
-    font-size: 1.2em; /* Increased font size */
+    font-size: 1.2em;
 }
