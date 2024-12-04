@@ -125,12 +125,16 @@ header nav ul li a.active {
         display: block;
     }
 
-    /* Show both "Home" and "Paper" as icons in mobile view */
-    header nav ul li.home-link a::before {
-        content: "\f015"; /* Font Awesome home icon */
-        font-family: "Font Awesome 5 Free";
-        font-weight: 900;
-        margin-right: 8px;
+    /* Hide "Home" link in mobile view */
+    header nav ul li.home-link {
+        display: none;
+    }
+
+    /* Style "Paper" link with icon */
+    header nav ul li.paper-link a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     header nav ul li.paper-link a::before {
@@ -140,12 +144,9 @@ header nav ul li a.active {
         margin-right: 8px;
     }
 
-    /* Adjust link display for icons */
-    header nav ul li a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2em; /* Ensure icons and text are the same size */
+    /* Ensure the "Paper" link text is visible */
+    header nav ul li.paper-link a {
+        font-size: 1.2em;
     }
 }
 
@@ -190,19 +191,24 @@ header nav ul li a.active {
 .hero-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
 }
 
 .hero-buttons .btn {
     flex: 1 1 30%;
     text-align: center;
-    min-width: 100px;
+    min-width: 120px;
+    padding: 12px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .hero-buttons .btn.primary-btn {
     background: #ff7f50;
     color: #fff;
+    border: none;
 }
 
 .hero-buttons .btn.primary-btn:hover {
@@ -213,6 +219,7 @@ header nav ul li a.active {
 .hero-buttons .btn.secondary-btn {
     background: #333;
     color: #fff;
+    border: none;
 }
 
 .hero-buttons .btn.secondary-btn:hover {
@@ -223,6 +230,7 @@ header nav ul li a.active {
 .hero-buttons .btn.code-btn {
     background: #6e5494;
     color: #fff;
+    border: none;
 }
 
 .hero-buttons .btn.code-btn:hover {
