@@ -1,6 +1,6 @@
-# MID-Space Website
+# Mid-space Website
 
-Welcome to the **MID-Space** website! This project focuses on aligning diverse community needs with inclusive public spaces through AI-generated visualizations.
+Welcome to the **Mid-space** website! This project focuses on aligning diverse community needs with inclusive public spaces through AI-generated visualizations.
 
 ## Features
 
@@ -25,9 +25,9 @@ To view the website locally:
 
 ## Usage
 
-- **Home:** Overview of the MID-Space project with navigation links.
+- **Home:** Overview of the Mid-space project with navigation links.
 - **Paper:** Detailed information about the research study.
-- **Download Dataset:** Access the MID-Space dataset.
+- **Download Dataset:** Access the Mid-space dataset.
 - **View Code:** Explore the project's source code on GitHub.
 
 ## License

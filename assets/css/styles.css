@@ -565,3 +565,55 @@ footer .social-links {
 header nav ul li a {
     font-size: 1.2em;
 }
+
+
+/* Affiliations Section Styling */
+.affiliations {
+    margin-bottom: 40px; /* Adds space below the affiliations */
+}
+
+.affiliations p {
+    font-size: 1em; /* Ensures consistent font size */
+    color: #555; /* Maintains text color consistency */
+}
+
+/* Abstract Section Styling */
+.abstract-section {
+    margin-bottom: 40px; /* Adds space below the abstract */
+}
+
+.abstract-section p {
+    font-size: 1em; /* Ensures consistent font size */
+    color: #555; /* Maintains text color consistency */
+    line-height: 1.6; /* Improves readability */
+}
+
+/* Format figures in paper-content */
+.paper-content figure {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.paper-content figure img {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.paper-content figure figcaption {
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 5px;
+}
+
+
+
+/* Specific styling for WordCloud and Criteria figures */
+.paper-content figure img[src*="wordcloud"],
+.paper-content figure img[src*="criteria"] {
+    max-width: 800px;
+}
