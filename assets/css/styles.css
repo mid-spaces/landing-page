@@ -18,7 +18,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #f9f9f9;
-    font-size: 1.2em; /* Increased base font size */
+    font-size: 1.2em; 
 }
 
 /* Container */
@@ -38,7 +38,7 @@ header {
     width: 100%;
     top: 0;
     z-index: 1000;
-    padding: 10px 0; /* Increased padding for better spacing */
+    padding: 10px 0; 
 }
 
 header .container {
@@ -61,7 +61,7 @@ header .container {
 }
 
 .logo-container .mila-logo {
-    max-height: 80px; /* Further increased for better visibility */
+    max-height: 80px; 
     width: auto;
     height: auto;
 }
@@ -144,7 +144,7 @@ header nav ul li a.active {
         margin-right: 8px;
     }
 
-    /* Ensure the "Paper" link text is visible */
+    /* Adjust font size for better visibility */
     header nav ul li.paper-link a {
         font-size: 1.2em;
     }
@@ -153,7 +153,7 @@ header nav ul li a.active {
 /* Hero Section */
 .hero {
     background: #ffffff;
-    padding: 120px 0 20px 0; /* Increased top padding to account for fixed header */
+    padding: 120px 0 20px 0; 
     margin-top: 80px;
 }
 
@@ -256,7 +256,7 @@ header nav ul li a.active {
     }
 
     .hero-buttons .btn.code-btn {
-        margin-bottom: 10px; /* Add bottom margin to the "View Code" button */
+        margin-bottom: 10px; /* Adds space between buttons */
     }
 }
 
@@ -295,7 +295,7 @@ header nav ul li a.active {
     color: #555;
     font-size: 1em;
     line-height: 1.6;
-    margin-bottom: 20px; /* Reduced space below the paragraph */
+    margin-bottom: 20px;
 }
 
 /* Visualizations Section */
@@ -356,26 +356,26 @@ header nav ul li a.active {
 /* Contact Information */
 .contact-info {
     background: #fff;
-    padding: 40px 0; /* Reduced padding to match overall design */
+    padding: 40px 0; 
     text-align: center;
 }
 
 .contact-info p {
     color: #555;
-    font-size: 1.2em; /* Reduced font size to match website content */
+    font-size: 1.2em; 
 }
 
 /* Footer */
 footer {
     background: #333;
     color: #fff;
-    padding: 20px 0; /* Reduced padding to match overall design */
+    padding: 20px 0; 
     text-align: center;
 }
 
 footer p {
     margin-top: 15px;
-    font-size: 1.2em; /* Reduced font size to match website content */
+    font-size: 1.2em; 
 }
 
 footer a {
@@ -446,7 +446,6 @@ footer a:hover {
     margin-bottom: 10px;
 }
 
-/* Hide Social Links in Footer on Index Page */
 footer .social-links {
     display: none;
 }
@@ -546,7 +545,6 @@ footer .social-links {
     }
 }
 
-/* Additional Styles */
 
 /* Ensure logos are responsive and fit well within the header */
 .logo-container .logo {
