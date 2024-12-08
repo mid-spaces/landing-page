@@ -1,0 +1,321 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script>function neighbourhoodHighlight(params) {
+  // console.log("in nieghbourhoodhighlight");
+  allNodes = nodes.get({ returnType: "Object" });
+  // originalNodes = JSON.parse(JSON.stringify(allNodes));
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    highlightActive = true;
+    var i, j;
+    var selectedNode = params.nodes[0];
+    var degrees = 2;
+
+    // mark all nodes as hard to read.
+    for (let nodeId in allNodes) {
+      // nodeColors[nodeId] = allNodes[nodeId].color;
+      allNodes[nodeId].color = "rgba(200,200,200,0.5)";
+      if (allNodes[nodeId].hiddenLabel === undefined) {
+        allNodes[nodeId].hiddenLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+    var connectedNodes = network.getConnectedNodes(selectedNode);
+    var allConnectedNodes = [];
+
+    // get the second degree nodes
+    for (i = 1; i < degrees; i++) {
+      for (j = 0; j < connectedNodes.length; j++) {
+        allConnectedNodes = allConnectedNodes.concat(
+          network.getConnectedNodes(connectedNodes[j])
+        );
+      }
+    }
+
+    // all second degree nodes get a different color and their label back
+    for (i = 0; i < allConnectedNodes.length; i++) {
+      // allNodes[allConnectedNodes[i]].color = "pink";
+      allNodes[allConnectedNodes[i]].color = "rgba(150,150,150,0.75)";
+      if (allNodes[allConnectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[allConnectedNodes[i]].label =
+          allNodes[allConnectedNodes[i]].hiddenLabel;
+        allNodes[allConnectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // all first degree nodes get their own color and their label back
+    for (i = 0; i < connectedNodes.length; i++) {
+      // allNodes[connectedNodes[i]].color = undefined;
+      allNodes[connectedNodes[i]].color = nodeColors[connectedNodes[i]];
+      if (allNodes[connectedNodes[i]].hiddenLabel !== undefined) {
+        allNodes[connectedNodes[i]].label =
+          allNodes[connectedNodes[i]].hiddenLabel;
+        allNodes[connectedNodes[i]].hiddenLabel = undefined;
+      }
+    }
+
+    // the main node gets its own color and its label back.
+    // allNodes[selectedNode].color = undefined;
+    allNodes[selectedNode].color = nodeColors[selectedNode];
+    if (allNodes[selectedNode].hiddenLabel !== undefined) {
+      allNodes[selectedNode].label = allNodes[selectedNode].hiddenLabel;
+      allNodes[selectedNode].hiddenLabel = undefined;
+    }
+  } else if (highlightActive === true) {
+    // console.log("highlightActive was true");
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      // allNodes[nodeId].color = "purple";
+      allNodes[nodeId].color = nodeColors[nodeId];
+      // delete allNodes[nodeId].color;
+      if (allNodes[nodeId].hiddenLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].hiddenLabel;
+        allNodes[nodeId].hiddenLabel = undefined;
+      }
+    }
+    highlightActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    // console.log("Nothing was selected");
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        // console.log(allNodes[nodeId]);
+        // allNodes[nodeId].color = {};
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function filterHighlight(params) {
+  allNodes = nodes.get({ returnType: "Object" });
+  // if something is selected:
+  if (params.nodes.length > 0) {
+    filterActive = true;
+    let selectedNodes = params.nodes;
+
+    // hiding all nodes and saving the label
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = true;
+      if (allNodes[nodeId].savedLabel === undefined) {
+        allNodes[nodeId].savedLabel = allNodes[nodeId].label;
+        allNodes[nodeId].label = undefined;
+      }
+    }
+
+    for (let i=0; i < selectedNodes.length; i++) {
+      allNodes[selectedNodes[i]].hidden = false;
+      if (allNodes[selectedNodes[i]].savedLabel !== undefined) {
+        allNodes[selectedNodes[i]].label = allNodes[selectedNodes[i]].savedLabel;
+        allNodes[selectedNodes[i]].savedLabel = undefined;
+      }
+    }
+
+  } else if (filterActive === true) {
+    // reset all nodes
+    for (let nodeId in allNodes) {
+      allNodes[nodeId].hidden = false;
+      if (allNodes[nodeId].savedLabel !== undefined) {
+        allNodes[nodeId].label = allNodes[nodeId].savedLabel;
+        allNodes[nodeId].savedLabel = undefined;
+      }
+    }
+    filterActive = false;
+  }
+
+  // transform the object into an array
+  var updateArray = [];
+  if (params.nodes.length > 0) {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  } else {
+    for (let nodeId in allNodes) {
+      if (allNodes.hasOwnProperty(nodeId)) {
+        updateArray.push(allNodes[nodeId]);
+      }
+    }
+    nodes.update(updateArray);
+  }
+}
+
+function selectNode(nodes) {
+  network.selectNodes(nodes);
+  neighbourhoodHighlight({ nodes: nodes });
+  return nodes;
+}
+
+function selectNodes(nodes) {
+  network.selectNodes(nodes);
+  filterHighlight({nodes: nodes});
+  return nodes;
+}
+
+function highlightFilter(filter) {
+  let selectedNodes = []
+  let selectedProp = filter['property']
+  if (filter['item'] === 'node') {
+    let allNodes = nodes.get({ returnType: "Object" });
+    for (let nodeId in allNodes) {
+      if (allNodes[nodeId][selectedProp] && filter['value'].includes((allNodes[nodeId][selectedProp]).toString())) {
+        selectedNodes.push(nodeId)
+      }
+    }
+  }
+  else if (filter['item'] === 'edge'){
+    let allEdges = edges.get({returnType: 'object'});
+    // check if the selected property exists for selected edge and select the nodes connected to the edge
+    for (let edge in allEdges) {
+      if (allEdges[edge][selectedProp] && filter['value'].includes((allEdges[edge][selectedProp]).toString())) {
+        selectedNodes.push(allEdges[edge]['from'])
+        selectedNodes.push(allEdges[edge]['to'])
+      }
+    }
+  }
+  selectNodes(selectedNodes)
+}</script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+            
+            
+            
+            
+            
+
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 1000px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#ffdfba", "font": {"color": "black"}, "id": "Aesthetic Values", "label": "Aesthetic Values", "shape": "dot", "title": "Aesthetic Values", "value": 1904.7619047619046}, {"color": "#baffc9", "font": {"color": "black"}, "id": "Analytical Methods", "label": "Analytical Methods", "shape": "dot", "title": "Analytical Methods", "value": 2190.4761904761904}, {"color": "#ffffba", "font": {"color": "black"}, "id": "Consequentialism", "label": "Consequentialism", "shape": "dot", "title": "Consequentialism", "value": 2190.4761904761904}, {"color": "#b3e6ff", "font": {"color": "black"}, "id": "Constructivism", "label": "Constructivism", "shape": "dot", "title": "Constructivism", "value": 2190.4761904761904}, {"color": "#e0bbff", "font": {"color": "black"}, "id": "Critical Realism", "label": "Critical Realism", "shape": "dot", "title": "Critical Realism", "value": 2190.4761904761904}, {"color": "#ffb3ba", "font": {"color": "black"}, "id": "Cultural Valorization", "label": "Cultural Valorization", "shape": "dot", "title": "Cultural Valorization", "value": 2190.4761904761904}, {"color": "#ffb3ba", "font": {"color": "black"}, "id": "Economic Valorization", "label": "Economic Valorization", "shape": "dot", "title": "Economic Valorization", "value": 2190.4761904761904}, {"color": "#b3e6ff", "font": {"color": "black"}, "id": "Empiricism", "label": "Empiricism", "shape": "dot", "title": "Empiricism", "value": 2190.4761904761904}, {"color": "#ffdfba", "font": {"color": "black"}, "id": "Epistemic Values", "label": "Epistemic Values", "shape": "dot", "title": "Epistemic Values", "value": 2190.4761904761904}, {"color": "#ffdfba", "font": {"color": "black"}, "id": "Ethical Values", "label": "Ethical Values", "shape": "dot", "title": "Ethical Values", "value": 2190.4761904761904}, {"color": "#baffc9", "font": {"color": "black"}, "id": "Experimental Methods", "label": "Experimental Methods", "shape": "dot", "title": "Experimental Methods", "value": 2190.4761904761904}, {"color": "#e0bbff", "font": {"color": "black"}, "id": "Materialism", "label": "Materialism", "shape": "dot", "title": "Materialism", "value": 2190.4761904761904}, {"color": "#baffc9", "font": {"color": "black"}, "id": "Mixed Methods", "label": "Mixed Methods", "shape": "dot", "title": "Mixed Methods", "value": 2095.238095238095}, {"color": "#b3e6ff", "font": {"color": "black"}, "id": "Positivism", "label": "Positivism", "shape": "dot", "title": "Positivism", "value": 2190.4761904761904}, {"color": "#ffffba", "font": {"color": "black"}, "id": "Pragmatism", "label": "Pragmatism", "shape": "dot", "title": "Pragmatism", "value": 2190.4761904761904}, {"color": "#baffc9", "font": {"color": "black"}, "id": "Qualitative Methods", "label": "Qualitative Methods", "shape": "dot", "title": "Qualitative Methods", "value": 2190.4761904761904}, {"color": "#baffc9", "font": {"color": "black"}, "id": "Quantitative Methods", "label": "Quantitative Methods", "shape": "dot", "title": "Quantitative Methods", "value": 2190.4761904761904}, {"color": "#b3e6ff", "font": {"color": "black"}, "id": "Rationalism", "label": "Rationalism", "shape": "dot", "title": "Rationalism", "value": 1714.2857142857142}, {"color": "#e0bbff", "font": {"color": "black"}, "id": "Realism", "label": "Realism", "shape": "dot", "title": "Realism", "value": 2190.4761904761904}, {"color": "#ffb3ba", "font": {"color": "black"}, "id": "Social Valorization", "label": "Social Valorization", "shape": "dot", "title": "Social Valorization", "value": 2190.4761904761904}, {"color": "#e0bbff", "font": {"color": "black"}, "id": "Dualism", "label": "Dualism", "shape": "dot", "title": "Dualism", "value": 1714.2857142857142}, {"color": "#e0bbff", "font": {"color": "black"}, "id": "Idealism", "label": "Idealism", "shape": "dot", "title": "Idealism", "value": 1809.5238095238094}]);
+                  edges = new vis.DataSet([{"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Analytical Methods", "value": 28}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Consequentialism", "value": 42}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Constructivism", "value": 19}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Critical Realism", "value": 61}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Cultural Valorization", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Economic Valorization", "value": 15}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Empiricism", "value": 11}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Epistemic Values", "value": 32}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Ethical Values", "value": 9}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Experimental Methods", "value": 7}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Materialism", "value": 3}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Mixed Methods", "value": 9}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Positivism", "value": 36}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Pragmatism", "value": 24}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Qualitative Methods", "value": 8}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Quantitative Methods", "value": 14}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Rationalism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Realism", "value": 4}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Social Valorization", "value": 25}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Aesthetic Values", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Analytical Methods", "value": 795}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Consequentialism", "value": 1215}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Constructivism", "value": 619}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Critical Realism", "value": 2448}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Cultural Valorization", "value": 77}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Dualism", "value": 17}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Economic Valorization", "value": 664}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Empiricism", "value": 370}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Epistemic Values", "value": 1181}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Ethical Values", "value": 450}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Experimental Methods", "value": 147}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Idealism", "value": 8}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Materialism", "value": 129}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Mixed Methods", "value": 104}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Positivism", "value": 1691}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Pragmatism", "value": 436}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Qualitative Methods", "value": 360}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Quantitative Methods", "value": 245}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Rationalism", "value": 19}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Realism", "value": 97}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Analytical Methods", "to": "Social Valorization", "value": 910}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Consequentialism", "value": 1278}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Constructivism", "value": 820}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Critical Realism", "value": 2849}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Cultural Valorization", "value": 87}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Dualism", "value": 23}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Economic Valorization", "value": 697}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Empiricism", "value": 451}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Epistemic Values", "value": 1238}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Ethical Values", "value": 496}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Experimental Methods", "value": 256}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Idealism", "value": 8}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Materialism", "value": 98}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Mixed Methods", "value": 193}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Positivism", "value": 1776}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Pragmatism", "value": 475}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Qualitative Methods", "value": 632}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Quantitative Methods", "value": 444}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Rationalism", "value": 21}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Realism", "value": 90}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Consequentialism", "to": "Social Valorization", "value": 969}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Constructivism", "value": 135}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Critical Realism", "value": 833}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Cultural Valorization", "value": 24}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Dualism", "value": 10}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Economic Valorization", "value": 204}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Empiricism", "value": 75}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Epistemic Values", "value": 334}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Ethical Values", "value": 124}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Experimental Methods", "value": 45}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Idealism", "value": 3}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Materialism", "value": 31}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Mixed Methods", "value": 34}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Positivism", "value": 249}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Pragmatism", "value": 129}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Qualitative Methods", "value": 93}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Quantitative Methods", "value": 44}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Rationalism", "value": 4}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Realism", "value": 16}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Constructivism", "to": "Social Valorization", "value": 235}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Critical Realism", "value": 2452}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Cultural Valorization", "value": 111}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Dualism", "value": 22}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Economic Valorization", "value": 1093}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Empiricism", "value": 437}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Epistemic Values", "value": 1903}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Ethical Values", "value": 734}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Experimental Methods", "value": 249}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Idealism", "value": 7}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Materialism", "value": 110}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Mixed Methods", "value": 174}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Positivism", "value": 1470}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Pragmatism", "value": 711}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Qualitative Methods", "value": 557}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Quantitative Methods", "value": 380}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Rationalism", "value": 16}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Realism", "value": 75}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Critical Realism", "to": "Social Valorization", "value": 1462}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Cultural Valorization", "value": 4}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Dualism", "value": 5}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Economic Valorization", "value": 42}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Empiricism", "value": 42}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Epistemic Values", "value": 153}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Ethical Values", "value": 43}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Experimental Methods", "value": 24}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Materialism", "value": 7}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Mixed Methods", "value": 17}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Positivism", "value": 97}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Pragmatism", "value": 84}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Qualitative Methods", "value": 57}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Quantitative Methods", "value": 28}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Rationalism", "value": 2}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Realism", "value": 8}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Cultural Valorization", "to": "Social Valorization", "value": 78}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Dualism", "value": 7}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Economic Valorization", "value": 655}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Empiricism", "value": 410}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Epistemic Values", "value": 2012}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Ethical Values", "value": 492}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Experimental Methods", "value": 219}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Materialism", "value": 134}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Mixed Methods", "value": 135}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Positivism", "value": 1599}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Pragmatism", "value": 838}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Qualitative Methods", "value": 430}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Quantitative Methods", "value": 385}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Rationalism", "value": 6}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Realism", "value": 96}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Social Valorization", "value": 859}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Economic Valorization", "to": "Idealism", "value": 5}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Dualism", "value": 3}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Empiricism", "value": 68}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Epistemic Values", "value": 341}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Ethical Values", "value": 118}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Experimental Methods", "value": 52}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Materialism", "value": 43}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Mixed Methods", "value": 29}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Positivism", "value": 277}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Pragmatism", "value": 123}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Qualitative Methods", "value": 82}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Quantitative Methods", "value": 72}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Rationalism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Realism", "value": 29}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Empiricism", "to": "Social Valorization", "value": 253}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Dualism", "value": 11}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Epistemic Values", "value": 1843}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Ethical Values", "value": 694}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Experimental Methods", "value": 401}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Idealism", "value": 9}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Materialism", "value": 204}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Mixed Methods", "value": 233}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Positivism", "value": 2506}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Pragmatism", "value": 1356}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Qualitative Methods", "value": 715}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Quantitative Methods", "value": 656}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Rationalism", "value": 19}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Realism", "value": 149}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Epistemic Values", "to": "Social Valorization", "value": 1409}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Dualism", "value": 5}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Ethical Values", "value": 117}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Experimental Methods", "value": 41}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Idealism", "value": 3}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Materialism", "value": 15}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Mixed Methods", "value": 49}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Positivism", "value": 381}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Pragmatism", "value": 113}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Qualitative Methods", "value": 243}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Quantitative Methods", "value": 83}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Rationalism", "value": 8}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Realism", "value": 9}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Ethical Values", "to": "Social Valorization", "value": 208}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Dualism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Experimental Methods", "value": 19}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Materialism", "value": 25}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Mixed Methods", "value": 16}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Positivism", "value": 221}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Pragmatism", "value": 73}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Qualitative Methods", "value": 52}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Quantitative Methods", "value": 38}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Rationalism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Realism", "value": 16}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Social Valorization", "value": 142}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Experimental Methods", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Dualism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Materialism", "value": 5}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Mixed Methods", "value": 9}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Positivism", "value": 108}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Pragmatism", "value": 46}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Qualitative Methods", "value": 33}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Quantitative Methods", "value": 21}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Realism", "value": 7}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Social Valorization", "value": 94}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Materialism", "to": "Rationalism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Dualism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Idealism", "value": 2}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Mixed Methods", "value": 5}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Positivism", "value": 122}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Pragmatism", "value": 32}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Qualitative Methods", "value": 18}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Quantitative Methods", "value": 15}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Realism", "value": 5}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Mixed Methods", "to": "Social Valorization", "value": 61}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Dualism", "value": 9}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Positivism", "value": 1147}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Pragmatism", "value": 553}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Qualitative Methods", "value": 437}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Quantitative Methods", "value": 309}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Rationalism", "value": 13}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Realism", "value": 116}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Positivism", "to": "Social Valorization", "value": 1148}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Pragmatism", "to": "Dualism", "value": 4}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Pragmatism", "to": "Idealism", "value": 5}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Pragmatism", "to": "Pragmatism", "value": 333}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Pragmatism", "to": "Qualitative Methods", "value": 334}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Pragmatism", "to": "Quantitative Methods", "value": 309}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Pragmatism", "to": "Rationalism", "value": 6}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Pragmatism", "to": "Realism", "value": 72}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Pragmatism", "to": "Social Valorization", "value": 673}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Qualitative Methods", "to": "Dualism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Qualitative Methods", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Qualitative Methods", "to": "Qualitative Methods", "value": 83}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Qualitative Methods", "to": "Quantitative Methods", "value": 50}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Qualitative Methods", "to": "Rationalism", "value": 4}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Qualitative Methods", "to": "Realism", "value": 19}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Qualitative Methods", "to": "Social Valorization", "value": 232}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Quantitative Methods", "to": "Dualism", "value": 3}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Quantitative Methods", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Quantitative Methods", "to": "Quantitative Methods", "value": 79}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Quantitative Methods", "to": "Rationalism", "value": 4}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Quantitative Methods", "to": "Realism", "value": 25}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Quantitative Methods", "to": "Social Valorization", "value": 297}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Rationalism", "to": "Realism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Rationalism", "to": "Social Valorization", "value": 6}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Realism", "to": "Dualism", "value": 2}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Realism", "to": "Idealism", "value": 1}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Realism", "to": "Realism", "value": 4}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Realism", "to": "Social Valorization", "value": 77}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Social Valorization", "to": "Dualism", "value": 7}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Social Valorization", "to": "Idealism", "value": 2}, {"color": "rgba(200, 200, 200, 0.3)", "from": "Social Valorization", "to": "Social Valorization", "value": 705}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {"physics": {"forceAtlas2Based": {"gravitationalConstant": -100, "centralGravity": 0.005, "springLength": 300, "springConstant": 0.3, "damping": 0.5, "avoidOverlap": 1}, "minVelocity": 0.01, "solver": "forceAtlas2Based", "timestep": 0.01}, "layout": {"improvedLayout": true}};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
